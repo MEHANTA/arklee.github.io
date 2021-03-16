@@ -166,6 +166,25 @@ function l2r (array) {
     }
 }
 
+function getCookie(name)
+{
+    let arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+    if(arr=document.cookie.match(reg))
+
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
+function setCookie(name,value)
+{
+    var Days = 30;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+
 function start () {
     let box = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
     score = 0
@@ -184,6 +203,7 @@ function start () {
             generate(box)
             if (score>max) {
                 max = score
+                setCookie("max",score)
             }
             show(box)
         }
@@ -191,4 +211,4 @@ function start () {
 }
 
 var score
-var max = 0
+var max = getCookie("max")
