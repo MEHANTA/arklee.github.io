@@ -75,6 +75,8 @@ function show(box) {
                 document.getElementById(String(i) + String(j)).style.backgroundColor = "#2E3440"
                 document.getElementById(String(i) + String(j)).style.color = "#D8DEE9"
             }
+            if (max === null)
+                max = 0
             document.getElementById("score").innerHTML = "分数 "+score
                 +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"最高分 "+max
         }
