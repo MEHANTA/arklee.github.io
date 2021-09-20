@@ -176,9 +176,16 @@ function checkFail (array) {
             }
         }
     }
-    for (m = 0; m < 3; m++) {
+    for (m = 0; m < 4; m++) {
         for (n = 0; n < 3; n++) {
-            if (array[m][n]===array[m][n+1] || array[m][n]===array[m+1][n]) {
+            if (array[m][n]===array[m][n+1]) {
+                return false
+            }
+        }
+    }
+    for (m = 0; m < 3; m++) {
+        for (n = 0; n < 4; n++) {
+            if (array[m][n]===array[m+1][n]) {
                 return false
             }
         }
@@ -201,7 +208,7 @@ function setCookie(name,value)
     document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 }
 
-over = document.getElementById("over")
+var over = document.getElementById("over")
 
 function start () {
     over.innerHTML = ""
