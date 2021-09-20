@@ -196,8 +196,10 @@ function checkFail (array) {
 function getCookie(name)
 {
     let arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)")
-    arr=document.cookie.match(reg)
-    return unescape(arr[2])
+    if(arr=document.cookie.match(reg))
+        return unescape(arr[2]);
+    else
+        return null;
 }
 
 function setCookie(name,value)
