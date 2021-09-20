@@ -168,6 +168,24 @@ function l2r (array) {
     }
 }
 
+function checkFail (array) {
+    for (m = 0; m < 4; m++) {
+        for (n = 0; n < 4; n++) {
+            if (array[m][n]===0) {
+                return false
+            }
+        }
+    }
+    for (m = 0; m < 3; m++) {
+        for (n = 0; n < 3; n++) {
+            if (array[m][n]===array[m][n+1] || array[m][n]===array[m+1][n]) {
+                return false
+            }
+        }
+    }
+    return true
+}
+
 function getCookie(name)
 {
     let arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
@@ -187,7 +205,10 @@ function setCookie(name,value)
     document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 }
 
+over = document.getElementById("over")
+
 function start () {
+    over.innerHTML = ""
     let box = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
     score = 0
     generate(box)
@@ -208,6 +229,9 @@ function start () {
                 setCookie("max",score)
             }
             show(box)
+        }
+        if (checkFail(box)) {
+            over.innerHTML = "游戏结束！当前分数为" + score
         }
     }
 }
